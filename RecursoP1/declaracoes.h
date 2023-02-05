@@ -11,6 +11,12 @@ typedef struct
 
 }tipoData;
 
+
+typedef struct
+{
+    int horas, minutos;
+}tipoHorario;
+
 typedef struct
 {
     int id;
@@ -19,17 +25,5 @@ typedef struct
     int contactoTele;
 
 }tipoCliente;
-
-typedef struct
-{
-    int id;
-    int contribuinte;
-    tipoData data;
-    int hora;
-    char descricao[80];
-    int custoVisita;
-    int satisfacao;
-
-}tipoAgendamento;
 
 #endif // DECLARACOES_H_INCLUDED
