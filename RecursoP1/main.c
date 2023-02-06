@@ -2,36 +2,57 @@
 #include <stdlib.h>
 #include <locale.h>
 
+#include "declaracoes.h"
+#include "exame.h"
+#include "funcoesaux.h"
+
+int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas);
+int menuClientes();
+int menuEstatistica();
+int menuFicheiros();
+
 int main()
 {
     tipoCliente cliente[150];
-    int quantidadeCliente,opcao;
-
-    opcao = menuPrinc();
+    int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0;
 
     do{
+        opcao = menuPrinc(quantidade Agendamentos, quantidadeVisitas);
+
         switch(opcao)
         {
             case 1:
+                opcao2 = menuClientes();
                 
-                break;
+                switch (opcao2)
+                {
+                    case 1:
+                        inserirCliente(cliente, *quantidadeCliente);
+                    break;
+            break;
 
             case 2:
+                opcao3 = menuFicheiros();
 
-                break;
+                switch (opcao3)
+                {
+                    case 1:
+
+                     break;
+                }
+            break;
 
             case 3:
+                opcao4 = menuEstatisticos();
 
-                break;
+                switch (opcao4)
+                {
+                case 1:
+                    break;
+                
 
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-        }
+                }
+            break;
     } while(opcao != 5);
 
     return 0;
@@ -49,7 +70,7 @@ int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas)
     printf("\n2 - Menu Agendamentos");
     printf("\n3 - Menu Ficheiros");
     printf("\n4 - Menu Estatistica");
-    printf("\n5 - Sair");
+    printf("\n5 - Voltar");
     printf("\nOpcao--> ");
 
     scanf("%d", &opcao);
@@ -109,4 +130,47 @@ int menuEstatistica()
     scanf("%d", &opc);
 
     return opc;
+}
+
+//Funcao que insere um novo cliente na base de dados
+void inserirCliente(tipoCliente cliente, &quantidadeCliente)
+{
+    int numContribuinte;
+
+    if(quantidade == 0)
+    {
+        printf("Erro - Limite máximo de clientes!");
+    } else
+    {
+        printf("--Novo Cliente--");
+        numContribuinte = lerInteiro("\nNumero de Contribuinte: ",MIN_CONTRIBUINTE,MAX_CONTRIBUINTE);
+        posicao = procurarCliente(cliente, *quantidadeCliente, numContribuinte);
+        
+        if(posicao > -1)
+        {
+            printf("Erro - Este contribuinte já existe!");
+        }
+         else
+        {
+            cliente[quantidadeCliente].numContribuinte = numContribuinte;
+            cliente[quantidadeCliente].conta
+        }
+    }
+    
+}
+
+//Funcao que procura o cliente pelo seu contribuinte
+int procurarCliente()
+{
+    int posicao= -1, i;
+
+    for(i = 0; i < quantidadeCliente; i++)
+    {  
+        if(quantidadeCliente[i].contribuinte == posicao)
+        {
+            posicao = i;
+            i = quantidadeCliente;
+        }
+    }
+    return posicao;
 }

@@ -17,11 +17,21 @@ typedef struct
 
 typedef struct
 {
-    int id;
+    int contribuinte;
     char nome[80];
     char morada[80];
     int contactoTele;
 
 }tipoCliente;
+
+///Declaracoes de constantes
+
+MIN_CONTRIBUINTE 111111111
+
+MAX_CONTRIBUINTE 999999999
+
+MIN_TELE 111111111
+
+MAX_TELE 999999999
 
 #endif // DECLARACOES_H_INCLUDED
