@@ -153,7 +153,10 @@ void inserirCliente(tipoCliente cliente, &quantidadeCliente)
          else
         {
             cliente[quantidadeCliente].numContribuinte = numContribuinte;
-            cliente[quantidadeCliente].conta
+            cliente[quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",)
+            lerString("\nNome: ", cliente[*quantidadeCliente].nome, 80);
+            lerString("\nMorada: ", cliente[*quantidadeCliente].morada, 80);
+            (*quantidadeClientes)++;
         }
     }
     
