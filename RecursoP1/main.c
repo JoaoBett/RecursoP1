@@ -10,6 +10,7 @@ int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas);
 int menuClientes();
 int menuEstatistica();
 int menuFicheiros();
+void inserirCliente(tipoCliente cliente, int &quantidadeCliente)
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
     int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0;
 
     do{
-        opcao = menuPrinc(quantidade Agendamentos, quantidadeVisitas);
+        opcao = menuPrinc(quantidadeAgendamentos, quantidadeVisitas);
 
         switch(opcao)
         {
@@ -28,6 +29,10 @@ int main()
                 {
                     case 1:
                         inserirCliente(cliente, *quantidadeCliente);
+                    break;
+                    
+                    case 2:
+                        listarCliente(cliente, *quantidadeCliente);
                     break;
             break;
 
@@ -133,11 +138,11 @@ int menuEstatistica()
 }
 
 //Funcao que insere um novo cliente na base de dados
-void inserirCliente(tipoCliente cliente, &quantidadeCliente)
+void inserirCliente(tipoCliente cliente[150], int &quantidadeCliente)
 {
-    int numContribuinte;
+    int numContribuinte, posicao;
 
-    if(quantidade == 0)
+    if(quantidade == 150)
     {
         printf("Erro - Limite máximo de clientes!");
     } else
@@ -150,7 +155,7 @@ void inserirCliente(tipoCliente cliente, &quantidadeCliente)
         {
             printf("Erro - Este contribuinte já existe!");
         }
-         else
+        else
         {
             cliente[quantidadeCliente].numContribuinte = numContribuinte;
             cliente[quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",)
@@ -159,7 +164,6 @@ void inserirCliente(tipoCliente cliente, &quantidadeCliente)
             (*quantidadeClientes)++;
         }
     }
-    
 }
 
 //Funcao que procura o cliente pelo seu contribuinte
@@ -176,4 +180,19 @@ int procurarCliente()
         }
     }
     return posicao;
+}
+
+//Funcao para listar as informacoes dos clientes
+void listarClientes(tipoCliente cliente[150], int *quantidadeCliente)
+{
+    int i;
+    for(i = 0, i < *quantidadeCliente, i++)
+    {
+        printf("A listar clientes...\n\n");
+
+        printf("\nContribuinte : %d", cliente[i].numContribuinte);
+        printf("\nContribuinte : %s", cliente[i].nome);
+        printf("\nContribuinte : %s", cliente[i].morada);
+        printf("\nContribuinte : %d", cliente[i].contactoTele);
+    }
 }
