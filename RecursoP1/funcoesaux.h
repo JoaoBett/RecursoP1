@@ -1,14 +1,16 @@
-#ifndef FUNCOESAUXILIARES_H_INCLUDED
-#define FUNCOESAUXILIARES_H_INCLUDED
+#ifndef FUNCOES_AUXILIARES_H
+#define FUNCOES_AUXILIARES_H
 
+#include "declaracoes.h"
 
-tipoData lerData (void);
-tipoHorario lerHorario (void);
+///PROTOTIPOS
 
-int lerInteiro (char msg[TEXTO_LONGO], int limMin, int limMax);
-float lerFloat (char msg[TEXTO_LONGO], float limMin, float limMax);
-void lerString(char msg[TEXTO_LONGO], char str[TEXTO_LONGO], int tamanho);
-void limparBuffer (void);
+int lerInteiro(char mensagem[80], int minimo, int maximo);
+float lerFloat(char mensagem[80], float minimo, float maximo);
+void lerString(char mensagem[80], char vetorCaracteres[80], int maximoCaracteres);
+tipoData lerData();
+void limpaBufferStdin(void);
+void pressionarContinuar();
+void limpaEcra();
 
-
-#endif // FUNCOESAUXILIARES_H_INCLUDED
+#endif // FUNCOES_AUXILIARES_H

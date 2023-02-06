@@ -1,8 +1,6 @@
 #ifndef DECLARACOES_H_INCLUDED
 #define DECLARACOES_H_INCLUDED
 
-#include s
-
 ///Declaracoes de estruturas
 
 typedef struct

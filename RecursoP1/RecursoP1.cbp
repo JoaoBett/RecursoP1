@@ -35,9 +35,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="dados.h" />
-		<Unit filename="declaracoes.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="declaracoes.h" />
 		<Unit filename="exame.c">
 			<Option compilerVar="CC" />

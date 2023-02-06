@@ -1,169 +1,166 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+
+#include "funcoesaux.h"
 #include "declaracoes.h"
-#include "funcoesAuxiliares.h"
 
-
-// ----------------------- FUNÇÕES AUXILIARES -----------------------------------------
-
-tipoHorario lerHorario (void)
+// Limpa caracteres indesejados
+void limpaBufferStdin(void)
 {
-    tipoHorario horario;
+    char chr;
 
-    horario.horas = lerInteiro("\nHora: ", 0, 23);
-    horario.minutos = lerInteiro("Minutos: ", 0, 59);
-
-    return horario;
+    do
+    {
+        chr = getchar();
+    } while (chr != '\n' && chr != EOF);
 }
 
+// Funcao para ler um numero inteiro
+int lerInteiro(char mensagem[80], int minimo, int maximo)
+{
+    int numero, controlo;
 
-tipoData lerData (void)
+    do
+    {
+        printf("%s (%d a %d) : ", mensagem, minimo, maximo);
+
+        // scanf devolve quantidade de valores vï¿½lidos obtidos
+        controlo = scanf ("%d", &numero);  
+
+        // limpa todos os caracteres do buffer stdin (nomeadamente o \n)
+        limpaBufferStdin();    
+
+        if (controlo == 0)
+        {
+            printf("Deve inserir um numero inteiro \n");
+        }
+        else
+        {
+            if(numero < minimo || numero > maximo)
+            {
+                printf("Numero invalido. Insira novamente:\n");
+            }
+        }
+    } while(numero < minimo || numero > maximo || controlo == 0);
+
+    return numero;
+}
+
+// Funcao para ler uma float
+float lerFloat(char mensagem[80], float minimo, float maximo)
+{
+    float numero;
+    int controlo;
+
+    do
+    {
+        printf("%s (%.2f a %.2f) :", mensagem, minimo, maximo);
+
+        // scanf devolve quantidade de valores vï¿½lidos obtidos
+        controlo = scanf ("%f", &numero);
+
+        limpaBufferStdin();
+
+        if (controlo == 0)
+        {
+            printf("Deve inserir um numero decimal \n");
+        }
+        else 
+        {
+            if (numero < minimo || numero > maximo)
+            {
+                printf("Numero invalido. Insira novamente:\n");
+            }
+        }
+    } while(numero < minimo || numero > maximo || controlo == 0);
+
+    return numero;
+}
+
+// Funcao para ler uma string
+void lerString(char mensagem[80], char vetorCaracteres[80], int maximoCaracteres)
+{
+    int tamanhoString;
+
+    // Repete leitura caso sejam obtidas strings vazias
+    do
+    {
+        printf("%s", mensagem);
+        fgets(vetorCaracteres, maximoCaracteres, stdin);
+
+        tamanhoString = strlen(vetorCaracteres);
+
+        if (tamanhoString == 1)
+        {
+            printf("Nao foram introduzidos caracteres! Apenas carregou no ENTER \n\n");  
+        }
+    } while (tamanhoString == 1);
+
+    // verifica se existirem caracteres
+    if(vetorCaracteres[tamanhoString-1] != '\n')  
+    {
+        // apenas faz sentido limpar buffer se existirem caracteres
+        limpaBufferStdin();  
+    }
+    else
+    {
+        //Elimina o \n da string armazenada em vetor
+        vetorCaracteres[tamanhoString-1] = '\0'; 	
+    }
+}
+
+// Funcao para ler uma float
+tipoData lerData()
 {
     tipoData data;
-    int diaMax;
+    int maxDiasMes;
 
-    data.ano = lerInteiro("\nAno: ", ANO_MIN, ANO_MAX);
-    data.mes = lerInteiro("Mes: ", 1, 12);
+    printf("Insira a data pretendida - ");
+    data.ano = lerInteiro("ano:", 1948,2023);
+    data.mes = lerInteiro("mes:", 1, 12);
 
     switch (data.mes)
     {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            diaMax = 31;
+        case 2:
+            if ((data.ano % 400 == 0) || (data.ano % 4 == 0 && data.ano % 100 != 0))
+            {
+                maxDiasMes = 29;
+            }
+            else
+            {
+                maxDiasMes = 28;
+            }
             break;
         case 4:
         case 6:
         case 9:
         case 11:
-            diaMax = 30;
+            maxDiasMes = 30;
             break;
-        case 2:
-            if (data.ano % 400 == 0 || (data.ano % 4 == 0 && data.ano % 100 != 0))
-            {
-
-                diaMax = 29;
-            }
-            else
-            {
-                diaMax = 28;
-            }
+        default:
+            maxDiasMes = 31;
     }
 
-    data.dia = lerInteiro("Dia: ", 1, diaMax);
+    data.dia = lerInteiro("dia:", 1, maxDiasMes);
 
     return data;
 }
 
-
-void lerString(char msg[TEXTO_LONGO], char str[TEXTO_LONGO], int tamanho)
-{
-    int tamTexto;
-
-    do
-    {
-        printf("%s", msg);
-        fgets(str, tamanho, stdin);
-
-        tamTexto = strlen(str);
-
-        if (tamTexto <= 1)
-        {
-            printf("\n\nERRO: tem de inserir um valor.\n");
-        }
-        else
-        {
-            if (str[tamTexto-1] == '\n')
-            {
-                str[tamTexto-1] = '\0';
-            }
-            else
-            {
-                limparBuffer();
-            }
-        }
-    }
-    while (tamTexto <= 1);
-}
-
-
-int lerInteiro (char msg[TEXTO_LONGO], int limMin, int limMax)
-{
-    int num, res;
-
-
-    do
-    {
-        printf("%s", msg);
-        res = scanf("%d", &num);
-        limparBuffer();
-
-        if (res != 1)
-        {
-            printf("\n\nERRO: o valor inserido tem que ser um numero inteiro.\n");
-        }
-        else
-        {
-            if (num < limMin || num > limMax)
-            {
-                printf("\n\nERRO: o numero tem de pertencer ao intervalo [%d, %d].\n", limMin, limMax);
-            }
-        }
-
-    }
-    while (num < limMin || num > limMax || res != 1);
-
-    return num;
-}
-
-
-float lerFloat (char msg[TEXTO_LONGO], float limMin, float limMax)
-{
-    float num;
-    int res;
-
-
-    do
-    {
-        printf("%s", msg);
-        res = scanf("%f", &num);
-        limparBuffer();
-
-        if (res != 1)
-        {
-            printf("\n\nERRO: o valor inserido tem que ser um numero inteiro.\n");
-        }
-        else
-        {
-            if (num < limMin || num > limMax)
-            {
-                printf("\n\nERRO: o numero tem de pertencer ao intervalo [%.2f, %.2f].\n", limMin, limMax);
-            }
-        }
-
-    }
-    while (num < limMin || num > limMax || res != 1);
-
-    return num;
-}
-
-
-void limparBuffer (void)
+void pressionarContinuar()
 {
     char lixo;
 
-    do
-    {
-        lixo = getchar();
+    printf("\nPressione qualquer tecla para continuar...");
+    scanf(" %c", &lixo);
 
-    }
-    while (lixo != '\n' && lixo != EOF);
+    limpaBufferStdin();
 }
 
+void limpaEcra()
+{
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+}
 
