@@ -28,10 +28,10 @@ int lerInteiro(char mensagem[80], int minimo, int maximo)
         printf("%s (%d a %d) : ", mensagem, minimo, maximo);
 
         // scanf devolve quantidade de valores v�lidos obtidos
-        controlo = scanf ("%d", &numero);  
+        controlo = scanf ("%d", &numero);
 
         // limpa todos os caracteres do buffer stdin (nomeadamente o \n)
-        limpaBufferStdin();    
+        limpaBufferStdin();
 
         if (controlo == 0)
         {
@@ -68,7 +68,7 @@ float lerFloat(char mensagem[80], float minimo, float maximo)
         {
             printf("Deve inserir um numero decimal \n");
         }
-        else 
+        else
         {
             if (numero < minimo || numero > maximo)
             {
@@ -95,20 +95,20 @@ void lerString(char mensagem[80], char vetorCaracteres[80], int maximoCaracteres
 
         if (tamanhoString == 1)
         {
-            printf("Nao foram introduzidos caracteres! Apenas carregou no ENTER \n\n");  
+            printf("Nao foram introduzidos caracteres! Apenas carregou no ENTER \n\n");
         }
     } while (tamanhoString == 1);
 
     // verifica se existirem caracteres
-    if(vetorCaracteres[tamanhoString-1] != '\n')  
+    if(vetorCaracteres[tamanhoString-1] != '\n')
     {
         // apenas faz sentido limpar buffer se existirem caracteres
-        limpaBufferStdin();  
+        limpaBufferStdin();
     }
     else
     {
         //Elimina o \n da string armazenada em vetor
-        vetorCaracteres[tamanhoString-1] = '\0'; 	
+        vetorCaracteres[tamanhoString-1] = '\0';
     }
 }
 
@@ -147,6 +147,33 @@ tipoData lerData()
     data.dia = lerInteiro("dia:", 1, maxDiasMes);
 
     return data;
+}
+
+void lerFicheiro(char nomeFicheiro[80])
+{
+    FILE * ficheiro;
+    char linha[150];
+
+    ficheiro = fopen(nomeFicheiro + ".txt","r");
+
+    while (!feof(ficheiro))
+    {
+        fgets(linha, 150, ficheiro);
+        puts(linha);
+    }
+
+    fclose(ficheiro);
+}
+
+void gravarFicheiro(char linha[150])
+{
+    FILE * ficheiro;
+
+    ficheiro = fopen("clientes.txt", "a");
+
+    fprintf(ficheiro,linha);
+
+    fclose(ficheiro);
 }
 
 void pressionarContinuar()

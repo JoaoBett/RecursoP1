@@ -10,12 +10,12 @@ int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas);
 int menuClientes();
 int menuEstatistica();
 int menuFicheiros();
-void inserirCliente(tipoCliente cliente, int &quantidadeCliente)
+void inserirCliente(tipoCliente cliente, int *quantidadeCliente);
 
 int main()
 {
     tipoCliente cliente[150];
-    int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0;
+    int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0, opcao2;
 
     do{
         opcao = menuPrinc(quantidadeAgendamentos, quantidadeVisitas);
@@ -24,13 +24,13 @@ int main()
         {
             case 1:
                 opcao2 = menuClientes();
-                
+
                 switch (opcao2)
                 {
                     case 1:
                         inserirCliente(cliente, *quantidadeCliente);
                     break;
-                    
+
                     case 2:
                         listarCliente(cliente, *quantidadeCliente);
                     break;
@@ -42,8 +42,12 @@ int main()
                 switch (opcao3)
                 {
                     case 1:
+                        gravarFicheiro();
+                    break;
 
-                     break;
+                    case 2:
+                        lerFicheiro();
+                    break;
                 }
             break;
 
@@ -53,9 +57,12 @@ int main()
                 switch (opcao4)
                 {
                 case 1:
-                    break;
-                
+                    melhoresClientes();
+                break;
 
+                case 2:
+                    percentagemSatisfacao();
+                break;
                 }
             break;
     } while(opcao != 5);
@@ -138,29 +145,30 @@ int menuEstatistica()
 }
 
 //Funcao que insere um novo cliente na base de dados
-void inserirCliente(tipoCliente cliente[150], int &quantidadeCliente)
+void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
 {
     int numContribuinte, posicao;
-
-    if(quantidade == 150)
+    
+    if(*quantidadeCliente == 150)
     {
         printf("Erro - Limite máximo de clientes!");
     } else
     {
         printf("--Novo Cliente--");
-        numContribuinte = lerInteiro("\nNumero de Contribuinte: ",MIN_CONTRIBUINTE,MAX_CONTRIBUINTE);
+        numContribuinte = lerInteiro("\nNumero de Contribuinte: ", MIN_CONTRIBUINTE, MAX_CONTRIBUINTE);
         posicao = procurarCliente(cliente, *quantidadeCliente, numContribuinte);
-        
+
         if(posicao > -1)
         {
             printf("Erro - Este contribuinte já existe!");
         }
         else
         {
-            cliente[quantidadeCliente].numContribuinte = numContribuinte;
-            cliente[quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",)
+            cliente[*quantidadeCliente].numContribuinte = numContribuinte;
+            cliente[*quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",)
             lerString("\nNome: ", cliente[*quantidadeCliente].nome, 80);
             lerString("\nMorada: ", cliente[*quantidadeCliente].morada, 80);
+            gravarFicheiro(cliente[*quantidadeCliente]);
             (*quantidadeClientes)++;
         }
     }
@@ -172,7 +180,7 @@ int procurarCliente()
     int posicao= -1, i;
 
     for(i = 0; i < quantidadeCliente; i++)
-    {  
+    {
         if(quantidadeCliente[i].contribuinte == posicao)
         {
             posicao = i;
