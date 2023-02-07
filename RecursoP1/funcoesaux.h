@@ -12,7 +12,7 @@ tipoData lerData();
 void limpaBufferStdin(void);
 void pressionarContinuar();
 void limpaEcra();
-void lerFicheiro();
-void gravarFicheiro(char linha[150]);
+//void lerFicheiro();
+//void gravarFicheiro(char linha[150]);
 
 #endif // FUNCOES_AUXILIARES_H

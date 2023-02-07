@@ -149,12 +149,12 @@ tipoData lerData()
     return data;
 }
 
-void lerFicheiro(char nomeFicheiro[80])
+/*void lerFicheiro(char nomeFicheiro[80])
 {
     FILE * ficheiro;
     char linha[150];
 
-    ficheiro = fopen(nomeFicheiro + ".txt","r");
+    ficheiro = fopen(strcat(nomeFicheiro , ".txt"),"r");
 
     while (!feof(ficheiro))
     {
@@ -163,18 +163,18 @@ void lerFicheiro(char nomeFicheiro[80])
     }
 
     fclose(ficheiro);
-}
+}*/
 
-void gravarFicheiro(char linha[150])
+/*void gravarFicheiro(tipoCliente cliente, tipoData data, tipoHorario horario)
 {
     FILE * ficheiro;
 
-    ficheiro = fopen("clientes.txt", "a");
+    ficheiro = fopen("cliente.txt", "w");
 
-    fprintf(ficheiro,linha);
+    fprintf(ficheiro,cliente);
 
     fclose(ficheiro);
-}
+}*/
 
 void pressionarContinuar()
 {

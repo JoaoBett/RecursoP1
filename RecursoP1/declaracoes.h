@@ -15,6 +15,7 @@ typedef struct
     int horas, minutos;
 }tipoHorario;
 
+
 typedef struct
 {
     int contribuinte;

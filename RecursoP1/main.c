@@ -6,78 +6,102 @@
 #include "exame.h"
 #include "funcoesaux.h"
 
-int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas);
+int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas);
 int menuClientes();
-int menuEstatistica();
+int menuEstatistico();
 int menuFicheiros();
-void inserirCliente(tipoCliente cliente, int *quantidadeCliente);
+int menuAgendamento();
+void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente);
+void listarClientes(tipoCliente cliente[150], int *quantidadeCliente);
+int procurarCliente(tipoCliente cliente[150],int *quantidadeCliente, int contribuinte);
 
 int main()
 {
     tipoCliente cliente[150];
-    int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0, opcao2;
+    int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0, opcSubMenu;
 
     do{
-        opcao = menuPrinc(quantidadeAgendamentos, quantidadeVisitas);
+        opcao = menuPrinc(&quantidadeAgendamentos, &quantidadeVisitas);
 
         switch(opcao)
         {
             case 1:
-                opcao2 = menuClientes();
+                opcSubMenu = menuClientes();
 
-                switch (opcao2)
+                switch (opcSubMenu)
                 {
                     case 1:
-                        inserirCliente(cliente, *quantidadeCliente);
+                        inserirCliente(cliente, &quantidadeCliente);
                     break;
 
                     case 2:
-                        listarCliente(cliente, *quantidadeCliente);
+                        listarClientes(cliente, &quantidadeCliente);
                     break;
-            break;
+                }
+                break;
 
             case 2:
-                opcao3 = menuFicheiros();
+                    opcSubMenu = menuAgendamento();
 
-                switch (opcao3)
+                    switch (opcSubMenu)
                 {
                     case 1:
-                        gravarFicheiro();
+
                     break;
 
                     case 2:
-                        lerFicheiro();
+
                     break;
                 }
             break;
 
-            case 3:
-                opcao4 = menuEstatisticos();
 
-                switch (opcao4)
+            case 3:
+                opcSubMenu = menuFicheiros();
+
+                switch (opcSubMenu)
+                {
+                    case 1:
+                       // gravarFicheiro(cliente,);
+                    break;
+
+                    case 2:
+                       // lerFicheiro();
+                    break;
+                }
+            break;
+
+            case 4:
+                opcSubMenu = menuEstatistico();
+
+                switch (opcSubMenu)
                 {
                 case 1:
-                    melhoresClientes();
+                  //  melhoresClientes();
                 break;
 
                 case 2:
-                    percentagemSatisfacao();
+                   // percentagemSatisfacao();
                 break;
                 }
             break;
-    } while(opcao != 5);
+
+            default:
+            break;
+        }
+    } while(opcao < 5);
 
     return 0;
 }
 
-int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas)
+int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas)
 {
     //Declaracao de variaveis
-    int opcao;
+    int opc;
 
     //Menu
     printf("\t\tTecnico de Reparacoes\n");
-    printf("Total de agendamentos: %d \t Total de visitas realizadas: %d \n\n", quantidadeAgendamentos, quantidadeVisitas);
+    printf("Total de agendamentos: %d \t Total de visitas realizadas: %d \n\n", *quantidadeAgendamentos, *quantidadeVisitas);
     printf("\n1 - Menu Clientes");
     printf("\n2 - Menu Agendamentos");
     printf("\n3 - Menu Ficheiros");
@@ -85,9 +109,9 @@ int menuPrinc(int quantidadeAgendamentos, int quantidadeVisitas)
     printf("\n5 - Voltar");
     printf("\nOpcao--> ");
 
-    scanf("%d", &opcao);
+    scanf("%d", &opc);
 
-    return opcao;
+    return opc;
 }
 
 
@@ -116,6 +140,8 @@ int menuFicheiros()
     int opc;
 
     //Menu
+    while (opc != 3)
+    {
     printf("\t\tMenu Ficheiros\n");
     printf("\n1 - Guardar Ficheiro");
     printf("\n2 - Ler Ficheiro");
@@ -123,16 +149,20 @@ int menuFicheiros()
     printf("\nOpcao--> ");
 
     scanf("%d", &opc);
+    }
 
     return opc;
 }
 
-int menuEstatistica()
+int menuEstatistico()
 {
     //Declaracao de variaveis
     int opc;
 
     //Menu
+
+    while (opc != 3)
+    {
     printf("\t\tMenu Estatistico\n");
     printf("\n1 - Melhores Clientes");
     printf("\n2 - Percentagem com grau de satisfacao");
@@ -140,15 +170,35 @@ int menuEstatistica()
     printf("\nOpcao--> ");
 
     scanf("%d", &opc);
-
+    }
     return opc;
 }
+
+int menuAgendamento()
+ {
+    //Declaracao de variaveis
+    int opc;
+
+    //Menu
+    while(opc != 4)
+    {
+    printf("\t\tMenu Agendamento\n");
+    printf("\n1 - Adicionar Novo Agendamento");
+    printf("\n2 - Registar visita");
+    printf("\n3 - Consultar Agendamentos (por data)");
+    printf("\n4 - Sair");
+    printf("\nOpcao--> ");
+
+    scanf("%d", &opc);
+    }
+    return opc;
+ }
 
 //Funcao que insere um novo cliente na base de dados
 void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
 {
     int numContribuinte, posicao;
-    
+
     if(*quantidadeCliente == 150)
     {
         printf("Erro - Limite máximo de clientes!");
@@ -164,24 +214,24 @@ void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
         }
         else
         {
-            cliente[*quantidadeCliente].numContribuinte = numContribuinte;
-            cliente[*quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",)
+            cliente[*quantidadeCliente].contribuinte = numContribuinte;
+            cliente[*quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",MIN_TELE,MAX_TELE);
             lerString("\nNome: ", cliente[*quantidadeCliente].nome, 80);
             lerString("\nMorada: ", cliente[*quantidadeCliente].morada, 80);
-            gravarFicheiro(cliente[*quantidadeCliente]);
-            (*quantidadeClientes)++;
+            //gravarFicheiro(cliente[*quantidadeCliente]);
+            (*quantidadeCliente)++;
         }
     }
 }
 
 //Funcao que procura o cliente pelo seu contribuinte
-int procurarCliente()
+int procurarCliente(tipoCliente cliente[150], int *quantidadeCliente, int contribuinte)
 {
     int posicao= -1, i;
 
-    for(i = 0; i < quantidadeCliente; i++)
+    for(i = 0; i < *quantidadeCliente; i++)
     {
-        if(quantidadeCliente[i].contribuinte == posicao)
+        if(cliente[i].contribuinte == posicao)
         {
             posicao = i;
             i = quantidadeCliente;
@@ -194,13 +244,14 @@ int procurarCliente()
 void listarClientes(tipoCliente cliente[150], int *quantidadeCliente)
 {
     int i;
-    for(i = 0, i < *quantidadeCliente, i++)
+
+    for(i = 0; i < *quantidadeCliente; i++)
     {
         printf("A listar clientes...\n\n");
 
-        printf("\nContribuinte : %d", cliente[i].numContribuinte);
-        printf("\nContribuinte : %s", cliente[i].nome);
-        printf("\nContribuinte : %s", cliente[i].morada);
-        printf("\nContribuinte : %d", cliente[i].contactoTele);
+        printf("\nContribuinte: %d", cliente[i].contribuinte);
+        printf("\Nome: %s", cliente[i].nome);
+        printf("\Morada: %s", cliente[i].morada);
+        printf("\Telefone : %d", cliente[i].contactoTele);
     }
 }
