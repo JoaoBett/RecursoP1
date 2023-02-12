@@ -22,8 +22,18 @@ typedef struct
     char nome[80];
     char morada[80];
     int contactoTele;
+    tipoData data;
 
 }tipoCliente;
+
+typedef struct
+{
+    tipoData data;
+    tipoHorario horario;
+    int grauSatis;
+
+}tipoAgendamento;
+
 
 ///Declaracoes de constantes
 #define MIN_CONTRIBUINTE 111111111

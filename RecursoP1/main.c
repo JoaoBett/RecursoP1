@@ -17,7 +17,7 @@ int menuAgendamento();
 //----------Funcoes das funcionalidades----------
 
 void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente);
-void listarClientes(tipoCliente cliente[150], int *quantidadeCliente);
+void listarClientes(tipoCliente cliente[150], int quantidadeCliente);
 int procurarCliente(tipoCliente cliente[150],int *quantidadeCliente, int contribuinte);
 
 //----------Main----------
@@ -43,6 +43,10 @@ int main()
 
                     case 2:
                         listarClientes(cliente, quantidadeCliente);
+                    break;
+
+                    case 3:
+                        listarClienteData();
                     break;
                 }
                 break;
@@ -109,14 +113,14 @@ int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas)
     int opc;
 
     //Menu
-    printf("\t\tTecnico de Reparacoes\n");
+    printf("----------------------------Tecnico de Reparacoes----------------------------\n\n");
     printf("Total de agendamentos: %d \t Total de visitas realizadas: %d \n\n", *quantidadeAgendamentos, *quantidadeVisitas);
-    printf("\n1 - Menu Clientes");
-    printf("\n2 - Menu Agendamentos");
-    printf("\n3 - Menu Ficheiros");
-    printf("\n4 - Menu Estatistica");
-    printf("\n5 - Voltar");
-    printf("\nOpcao--> ");
+    printf("\n\t1 - Menu Clientes");
+    printf("\n\t2 - Menu Agendamentos");
+    printf("\n\t3 - Menu Ficheiros");
+    printf("\n\t4 - Menu Estatistica");
+    printf("\n\t5 - Voltar");
+    printf("\n\nOpcao--> ");
 
     scanf("%d", &opc);
 
@@ -131,14 +135,12 @@ int menuClientes()
 
     //Menu
     printf("\t\tMenu Clientes\n");
-    printf("\n1 - Adicionar Novo Agendamento");
-    printf("\n2 - Registar Visita");
-    printf("\n3 - Consultar Agendamento(por data)");
-    printf("\n4 - Listar Clientes e respetivos agendamentos");
-    printf("\n5 - Sair");
-    printf("\nOpcao--> ");
+    printf("\n1 - Adicionar Novo Cliente Visita");
+    printf("\n2 - Listar Clientes");
+    printf("\n3 - Listar Clientes e respetivos agendamentos");
+    printf("\n4 - Sair");
 
-    scanf("%d", &opc);
+    opc = lerInteiro("\nOpcao",1,4);
 
     return opc;
 }
@@ -229,7 +231,6 @@ void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
             cliente[*quantidadeCliente].contactoTele = lerInteiro("\nTelefone: ",MIN_TELE,MAX_TELE);
             lerString("\nNome: ", cliente[*quantidadeCliente].nome, 80);
             lerString("\nMorada: ", cliente[*quantidadeCliente].morada, 80);
-            //gravarFicheiro(cliente[*quantidadeCliente]);
             (*quantidadeCliente)++;
         }
     }
@@ -259,14 +260,45 @@ void listarClientes(tipoCliente cliente[150], int quantidadeCliente)
     {
         printf("\n\nAtencao - Não existem Clientes.\n\n");
     }
-    
+
     for(i = 0; i < quantidadeCliente; i++)
     {
         printf("A listar clientes...\n\n");
 
         printf("\nContribuinte: %d", cliente[i].contribuinte);
-        printf("\Nome: %s", cliente[i].nome);
-        printf("\Morada: %s", cliente[i].morada);
-        printf("\Telefone : %d", cliente[i].contactoTele);
+        printf("\nNome: %s", cliente[i].nome);
+        printf("\nMorada: %s", cliente[i].morada);
+        printf("\nTelefone : %d", cliente[i].contactoTele);
+    }
+}
+
+void listarClienteData(tipoCliente cliente[150], int quantidadeCliente, tipoData data, tipoAgendamento agendamento)
+{
+    int i;
+
+    if(quantidadeCliente < 0)
+    {
+        printf("Atencao - Nao existem Clientes");
+    }
+    else
+    {
+        data = lerData();
+
+        if(data.dia == agendamento.data.dia && data.mes == agendamento.data.mes && data.ano == agendamento.data.ano)
+        {
+        for(i = 0; i < quantidadeCliente ; i++)
+        {
+            printf("A listar clientes...\n\n");
+
+            printf("\nContribuinte: %d", cliente[i].contribuinte);
+            printf("\nNome: %s", cliente[i].nome);
+            printf("\nMorada: %s", cliente[i].morada);
+            printf("\nTelefone : %d", cliente[i].contactoTele);
+        }
+        }
+        else
+        {
+            printf("Atencao - Nao existem nenhum cliente e/ou agendamneto com esta data!");
+        }
     }
 }

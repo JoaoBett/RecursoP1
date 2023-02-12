@@ -201,49 +201,6 @@ tipoHorario lerHorario (void)
     return horario;
 }
 
-
-tipoData lerData (void)
-{
-    tipoData data;
-    int diaMax;
-
-    data.ano = lerInteiro("\nAno: ", ANO_MIN, ANO_MAX);
-    data.mes = lerInteiro("Mes: ", 1, 12);
-
-    switch (data.mes)
-    {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            diaMax = 31;
-            break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            diaMax = 30;
-            break;
-        case 2:
-            if (data.ano % 400 == 0 || (data.ano % 4 == 0 && data.ano % 100 != 0))
-            {
-
-                diaMax = 29;
-            }
-            else
-            {
-                diaMax = 28;
-            }
-    }
-
-    data.dia = lerInteiro("Dia: ", 1, diaMax);
-
-    return data;
-}
-
 ///FUNCOES FICHEIROS
 
 void escreverFicheiroBinario(tipoCliente clientes[150], int quantClientes)
