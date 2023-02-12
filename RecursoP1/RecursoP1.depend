@@ -17,3 +17,13 @@
 
 1675791342 c:\users\joão bettencourt\documents\github\recursop1\recursop1\declaracoes.h
 
+1675792616 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"declaracoes.h"
+	"exame.h"
+	"funcoesaux.h"
+
+1675639774 c:\users\joão bettencourt\documents\github\recursop1\recursop1\exame.h
+

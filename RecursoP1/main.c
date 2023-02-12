@@ -35,7 +35,7 @@ int main()
                     break;
 
                     case 2:
-                        listarClientes(cliente, &quantidadeCliente);
+                        listarClientes(cliente, quantidadeCliente);
                     break;
                 }
                 break;
@@ -241,11 +241,11 @@ int procurarCliente(tipoCliente cliente[150], int *quantidadeCliente, int contri
 }
 
 //Funcao para listar as informacoes dos clientes
-void listarClientes(tipoCliente cliente[150], int *quantidadeCliente)
+void listarClientes(tipoCliente cliente[150], int quantidadeCliente)
 {
     int i;
 
-    for(i = 0; i < *quantidadeCliente; i++)
+    for(i = 0; i < quantidadeCliente; i++)
     {
         printf("A listar clientes...\n\n");
 

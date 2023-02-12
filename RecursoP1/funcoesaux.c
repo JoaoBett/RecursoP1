@@ -191,3 +191,127 @@ void limpaEcra()
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 
+tipoHorario lerHorario (void)
+{
+    tipoHorario horario;
+
+    horario.horas = lerInteiro("\nHora: ", 0, 23);
+    horario.minutos = lerInteiro("Minutos: ", 0, 59);
+
+    return horario;
+}
+
+
+tipoData lerData (void)
+{
+    tipoData data;
+    int diaMax;
+
+    data.ano = lerInteiro("\nAno: ", ANO_MIN, ANO_MAX);
+    data.mes = lerInteiro("Mes: ", 1, 12);
+
+    switch (data.mes)
+    {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            diaMax = 31;
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            diaMax = 30;
+            break;
+        case 2:
+            if (data.ano % 400 == 0 || (data.ano % 4 == 0 && data.ano % 100 != 0))
+            {
+
+                diaMax = 29;
+            }
+            else
+            {
+                diaMax = 28;
+            }
+    }
+
+    data.dia = lerInteiro("Dia: ", 1, diaMax);
+
+    return data;
+}
+
+///FUNCOES FICHEIROS
+
+void escreverFicheiroBinario(tipoCliente clientes[150], int quantClientes)
+{
+    FILE *ficheiro;
+    int quantValoresEscritos;
+
+    ficheiro = fopen("dados.dat", "wb");
+
+    if (ficheiro == NULL)
+    {
+        printf("\n\nERRO: falha na abertura do ficheiro.\n\n");
+    }
+    else
+    {
+        quantValoresEscritos = fwrite(&quantClientes, sizeof(int), 1, ficheiro);
+        if (quantValoresEscritos != 1)
+        {
+            printf("\n\nERRO: falha na escrita da quantidade de clientes\n\n");
+        }
+        else
+        {
+           quantValoresEscritos = fwrite(clientes, sizeof(tipoCliente), quantClientes, ficheiro);
+           if (quantValoresEscritos != quantClientes)
+           {
+               printf("\n\nERRO: falha na escrita dos dados dos clientes\n\n");
+           }
+        }
+
+        fclose(ficheiro);
+    }
+}
+
+void lerFicheiroBinario(tipoCliente clientes[150], int *quantClientes)
+{
+    FILE *ficheiro;
+    int quantValoresLidos, erro = 0;
+
+    ficheiro = fopen("dados.dat", "rb");
+
+    if (ficheiro == NULL)
+    {
+        printf("\n\nERRO: falha na abertura do ficheiro.\n\n");
+    }
+    else
+    {
+        quantValoresLidos = fread(quantClientes, sizeof(int), 1, ficheiro);
+        if (quantValoresLidos != 1)
+        {
+            printf("\n\nERRO: falha na leitura da quantidade de clientes\n\n");
+            erro = 1;
+        }
+        else
+        {
+           quantValoresLidos = fread(clientes, sizeof(tipoCliente), *quantClientes, ficheiro);
+           if (quantValoresLidos != *quantClientes)
+           {
+               printf("\n\nERRO: falha na leitura dos dados dos clientes\n\n");
+               erro = 1;
+           }
+
+        }
+
+        if (erro == 1)
+        {
+            *quantClientes = 0;
+        }
+
+        fclose(ficheiro);
+    }
+}
