@@ -6,14 +6,21 @@
 #include "exame.h"
 #include "funcoesaux.h"
 
+//----------Funcoes dos Menus----------
+
 int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas);
 int menuClientes();
 int menuEstatistico();
 int menuFicheiros();
 int menuAgendamento();
+
+//----------Funcoes das funcionalidades----------
+
 void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente);
 void listarClientes(tipoCliente cliente[150], int *quantidadeCliente);
 int procurarCliente(tipoCliente cliente[150],int *quantidadeCliente, int contribuinte);
+
+//----------Main----------
 
 int main()
 {
@@ -93,6 +100,8 @@ int main()
 
     return 0;
 }
+
+//----------Funcoes dos Menus----------
 
 int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas)
 {
@@ -194,12 +203,14 @@ int menuAgendamento()
     return opc;
  }
 
+//-----------Funcoes das Funcionalidades----------
+
 //Funcao que insere um novo cliente na base de dados
 void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
 {
     int numContribuinte, posicao;
 
-    if(*quantidadeCliente == 150)
+    if(*quantidadeCliente > 150)
     {
         printf("Erro - Limite máximo de clientes!");
     } else
@@ -244,7 +255,11 @@ int procurarCliente(tipoCliente cliente[150], int *quantidadeCliente, int contri
 void listarClientes(tipoCliente cliente[150], int quantidadeCliente)
 {
     int i;
-
+    if (quantidadeCliente < 0)
+    {
+        printf("\n\nAtencao - Não existem Clientes.\n\n");
+    }
+    
     for(i = 0; i < quantidadeCliente; i++)
     {
         printf("A listar clientes...\n\n");

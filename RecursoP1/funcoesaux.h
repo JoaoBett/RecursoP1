@@ -15,7 +15,7 @@ tipoData lerData();
 void limpaBufferStdin(void);
 void pressionarContinuar();
 void limpaEcra();
-//void lerFicheiro();
-//void gravarFicheiro(char linha[150]);
+void escreverFicheiroBinario(tipoCliente clientes[150], int quantClientes);
+void lerFicheiroBinario(tipoCliente clientes[150], int *quantClientes);
 
 #endif // FUNCOES_AUXILIARES_H
