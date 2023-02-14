@@ -32,7 +32,6 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="declaracoes.h" />
-		<Unit filename="exame.h" />
 		<Unit filename="funcoesaux.c">
 			<Option compilerVar="CC" />
 		</Unit>

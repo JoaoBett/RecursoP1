@@ -10,7 +10,7 @@ The aim is to develop a program, in C, to manage the agenda of a home appliance 
 
 The technician must register and consult the personal data of his clients, as well as register and consult the schedules of repair requests.
 
-###Installation
+##Installation
 
 MAC OS X & Linux:
 ```sh

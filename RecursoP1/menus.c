@@ -4,7 +4,6 @@
 #include <string.h>
 #include <locale.h>
 
-#include "main.c"
 #include "declaracoes.h"
 #include "funcoesaux.h"
 

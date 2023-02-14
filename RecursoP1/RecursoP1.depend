@@ -3,7 +3,7 @@
 
 1675639406 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\exame.c
 
-1676342242 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\funcoesaux.c
+1676342450 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\funcoesaux.c
 	<stdlib.h>
 	<ctype.h>
 	<stdio.h>
@@ -17,13 +17,24 @@
 
 1676342080 c:\users\joão bettencourt\documents\github\recursop1\recursop1\declaracoes.h
 
-1676342179 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\main.c
+1676343529 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	"declaracoes.h"
-	"exame.h"
 	"funcoesaux.h"
+	"menus.h"
 
 1675639774 c:\users\joão bettencourt\documents\github\recursop1\recursop1\exame.h
+
+1676343615 c:\users\joão bettencourt\documents\github\recursop1\recursop1\menus.h
+
+1676343624 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\menus.c
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+	<string.h>
+	<locale.h>
+	"declaracoes.h"
+	"funcoesaux.h"
 
