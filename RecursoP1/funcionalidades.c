@@ -17,7 +17,7 @@ void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
 
     if(*quantidadeCliente > MAX)
     {
-        printf("Erro - Limite máximo de clientes!");
+        printf("Erro - Limite mï¿½ximo de clientes!");
     }
     else
     {
@@ -27,7 +27,7 @@ void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente)
 
         if(posicao > -1)
         {
-            printf("\n\nErro - Este contribuinte já existe!\n");
+            printf("\n\nErro - Este contribuinte jï¿½ existe!\n");
             printf("%d",posicao);
         }
         else
@@ -63,7 +63,7 @@ void listarClientes(tipoCliente cliente[150], int quantidadeCliente)
     int i;
     if (quantidadeCliente < 0)
     {
-        printf("\n\nAtencao - Não existem Clientes.\n\n");
+        printf("\n\nAtencao - Nï¿½o existem Clientes.\n\n");
     }
 
     for(i = 0; i < quantidadeCliente; i++)
@@ -117,7 +117,7 @@ tipoAgendamento adicionarAgendamento(int *quantidadeCliente, int *quantidadeAgen
 {
     int numeroContribuinte, i, posicao, k;
 
-    if(quantidadeCliente < 0)
+    if(*\quantidadeCliente < 0)
     {
         printf("Atencao - Nao existem clientes!");
     }
@@ -158,6 +158,45 @@ tipoAgendamento adicionarAgendamento(int *quantidadeCliente, int *quantidadeAgen
                     }
                 lerString("\nDescricao: ", agendamento[i].descricao, 500);
             }
+        }
+    }
+}
+
+void registarVisita(tipoAgendamento agendamento[MAX], tipoCliente cliente[MAX], int quantidadeCliente)
+{
+
+    int i, posicao;
+
+    if(quantidadeCliente < 0)
+    {
+        printf("Atencao - Nao existem Clientes");
+    }
+    else
+    {
+        printf("\n\n--Nova Visita--\n\n");
+        numContribuinte = lerInteiro("\nNumero de Contribuinte: ", MIN_CONTRIBUINTE, MAX_CONTRIBUINTE);
+        posicao = procurarCliente(cliente, *quantidadeCliente, numContribuinte);
+        
+        if(posicao < -1)
+        {
+            printf("Atencao - Nao existem Clientes");
+        }
+        else
+        {
+            for (i = 0; i < quantidadeCliente; i++)
+            {
+                posicao = i;
+                i = quantidadeCliente;
+            }
+            
+        do
+        {
+        printf("\n\nQual o custo da reparacao?\n");
+        scanf("%d", &agendamento[i]->custo);
+
+        }while(agendamento->custo < 0);
+
+        agendamento[i]->grauSatis = lerInteiro("Qual o  grau de satisfacao ( 0 - Fraco | 1 - Bom | 2 -Excelente)",0,2);
         }
     }
 }

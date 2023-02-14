@@ -32,6 +32,7 @@ typedef struct
     tipoHorario horario;
     int grauSatis;
     char descricao[500];
+    int custo;
 
 }tipoAgendamento;
 

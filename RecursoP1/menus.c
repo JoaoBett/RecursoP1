@@ -21,7 +21,7 @@ int menuPrinc(int *quantidadeAgendamentos, int *quantidadeVisitas)
     printf("\n\t2 - Menu Agendamentos");
     printf("\n\t3 - Menu Ficheiros");
     printf("\n\t4 - Menu Estatistica");
-    printf("\n\t5 - Voltar");
+    printf("\n\t5 - Sair");
     printf("\n\nOpcao--> ");
 
     scanf("%d", &opc);
@@ -37,10 +37,10 @@ int menuClientes()
 
     //Menu
     printf("\t\tMenu Clientes\n");
-    printf("\n1 - Adicionar Novo Cliente");
-    printf("\n2 - Listar Clientes");
-    printf("\n3 - Listar Clientes e respetivos agendamentos");
-    printf("\n4 - Sair");
+    printf("\n\t1 - Adicionar Novo Cliente");
+    printf("\n\t2 - Listar Clientes");
+    printf("\n\t3 - Listar Clientes e respetivos agendamentos");
+    printf("\n\t4 - Voltar");
 
     opc = lerInteiro("\nOpcao",1,4);
 
@@ -56,9 +56,9 @@ int menuFicheiros()
     while (opc != 3)
     {
     printf("\t\tMenu Ficheiros\n");
-    printf("\n1 - Guardar Ficheiro");
-    printf("\n2 - Ler Ficheiro");
-    printf("\n3 - Sair");
+    printf("\n\t1 - Guardar Ficheiro");
+    printf("\n\t2 - Ler Ficheiro");
+    printf("\n\t3 - Voltar");
     printf("\nOpcao--> ");
 
     scanf("%d", &opc);
@@ -77,9 +77,9 @@ int menuEstatistico()
     while (opc != 3)
     {
     printf("\t\tMenu Estatistico\n");
-    printf("\n1 - Melhores Clientes");
-    printf("\n2 - Percentagem com grau de satisfacao");
-    printf("\n3 - Sair");
+    printf("\n\t1 - Melhores Clientes");
+    printf("\n\t2 - Percentagem com grau de satisfacao");
+    printf("\n\t3 - Voltar");
     printf("\nOpcao--> ");
 
     scanf("%d", &opc);
@@ -96,10 +96,10 @@ int menuAgendamento()
     while(opc != 4)
     {
     printf("\t\tMenu Agendamento\n");
-    printf("\n1 - Adicionar Novo Agendamento");
-    printf("\n2 - Registar visita");
-    printf("\n3 - Consultar Agendamentos (por data)");
-    printf("\n4 - Sair");
+    printf("\n\t1 - Adicionar Novo Agendamento");
+    printf("\n\t2 - Registar visita");
+    printf("\n\t3 - Consultar Agendamentos (por data)");
+    printf("\n\t4 - Voltar");
     printf("\nOpcao--> ");
 
     scanf("%d", &opc);

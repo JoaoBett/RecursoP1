@@ -46,7 +46,7 @@ int main()
                     switch (opcSubMenu)
                 {
                     case 1:
-
+                        adicionarAgendamento( &quantidadeCliente, &quantidadeAgendamentos, cliente, agendamento);
                     break;
 
                     case 2:

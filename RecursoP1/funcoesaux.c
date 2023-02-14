@@ -154,7 +154,9 @@ void pressionarContinuar()
     char lixo;
 
     printf("\nPressione qualquer tecla para continuar...");
-    scanf(" %c", &lixo);
+    scanf("%c", &lixo);
+
+    limpaBufferStdin();
 }
 
 void limpaEcra()
