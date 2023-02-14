@@ -31,6 +31,7 @@ typedef struct
     tipoData data;
     tipoHorario horario;
     int grauSatis;
+    char descricao[500];
 
 }tipoAgendamento;
 

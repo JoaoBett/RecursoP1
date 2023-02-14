@@ -3,7 +3,7 @@
 
 1675639406 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\exame.c
 
-1676334032 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\funcoesaux.c
+1676342242 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\funcoesaux.c
 	<stdlib.h>
 	<ctype.h>
 	<stdio.h>
@@ -15,9 +15,9 @@
 1676177212 c:\users\joão bettencourt\documents\github\recursop1\recursop1\funcoesaux.h
 	"declaracoes.h"
 
-1676335136 c:\users\joão bettencourt\documents\github\recursop1\recursop1\declaracoes.h
+1676342080 c:\users\joão bettencourt\documents\github\recursop1\recursop1\declaracoes.h
 
-1676179043 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\main.c
+1676342179 source:c:\users\joão bettencourt\documents\github\recursop1\recursop1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
