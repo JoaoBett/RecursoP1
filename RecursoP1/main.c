@@ -1,3 +1,5 @@
+//------------Bibliotecas utilizadas------------
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -19,12 +21,15 @@ int menuAgendamento();
 void inserirCliente(tipoCliente cliente[150], int *quantidadeCliente);
 void listarClientes(tipoCliente cliente[150], int quantidadeCliente);
 int procurarCliente(tipoCliente cliente[150],int *quantidadeCliente, int contribuinte);
+void listarClienteData(tipoCliente cliente[MAX], int quantidadeCliente, tipoAgendamento agendamento[MAX]);
 
 //----------Main----------
 
 int main()
 {
-    tipoCliente cliente[150];
+    tipoCliente cliente[MAX];
+    tipoAgendamento agendamento[MAX];
+    tipoDias data[MAX];
     int quantidadeCliente, opcao, quantidadeAgendamentos = 0, quantidadeVisitas = 0, opcSubMenu;
 
     do{
@@ -46,7 +51,7 @@ int main()
                     break;
 
                     case 3:
-                        listarClienteData();
+                        listarClienteData(cliente, quantidadeCliente, agendamento);
                     break;
                 }
                 break;
@@ -73,11 +78,11 @@ int main()
                 switch (opcSubMenu)
                 {
                     case 1:
-                       // gravarFicheiro(cliente,);
+                       escreverFicheiroBinario(cliente, quantidadeCliente);
                     break;
 
                     case 2:
-                       // lerFicheiro();
+                        lerFicheiroBinario(cliente, &quantidadeCliente);
                     break;
                 }
             break;
@@ -135,7 +140,7 @@ int menuClientes()
 
     //Menu
     printf("\t\tMenu Clientes\n");
-    printf("\n1 - Adicionar Novo Cliente Visita");
+    printf("\n1 - Adicionar Novo Cliente");
     printf("\n2 - Listar Clientes");
     printf("\n3 - Listar Clientes e respetivos agendamentos");
     printf("\n4 - Sair");
@@ -272,9 +277,11 @@ void listarClientes(tipoCliente cliente[150], int quantidadeCliente)
     }
 }
 
-void listarClienteData(tipoCliente cliente[150], int quantidadeCliente, tipoData data, tipoAgendamento agendamento)
+void listarClienteData(tipoCliente cliente[MAX], int quantidadeCliente, tipoAgendamento agendamento[MAX])
 {
     int i;
+
+    tipoData data;
 
     if(quantidadeCliente < 0)
     {
@@ -284,7 +291,7 @@ void listarClienteData(tipoCliente cliente[150], int quantidadeCliente, tipoData
     {
         data = lerData();
 
-        if(data.dia == agendamento.data.dia && data.mes == agendamento.data.mes && data.ano == agendamento.data.ano)
+        if(data.dia == agendamento->data.dia && data.mes == agendamento->data.mes && data.ano == agendamento->data.ano)
         {
         for(i = 0; i < quantidadeCliente ; i++)
         {
@@ -298,7 +305,7 @@ void listarClienteData(tipoCliente cliente[150], int quantidadeCliente, tipoData
         }
         else
         {
-            printf("Atencao - Nao existem nenhum cliente e/ou agendamneto com esta data!");
+            printf("Atencao - Nao existem nenhum cliente/agendamento com esta data!");
         }
     }
 }

@@ -149,33 +149,6 @@ tipoData lerData()
     return data;
 }
 
-/*void lerFicheiro(char nomeFicheiro[80])
-{
-    FILE * ficheiro;
-    char linha[150];
-
-    ficheiro = fopen(strcat(nomeFicheiro , ".txt"),"r");
-
-    while (!feof(ficheiro))
-    {
-        fgets(linha, 150, ficheiro);
-        puts(linha);
-    }
-
-    fclose(ficheiro);
-}*/
-
-/*void gravarFicheiro(tipoCliente cliente, tipoData data, tipoHorario horario)
-{
-    FILE * ficheiro;
-
-    ficheiro = fopen("cliente.txt", "w");
-
-    fprintf(ficheiro,cliente);
-
-    fclose(ficheiro);
-}*/
-
 void pressionarContinuar()
 {
     char lixo;

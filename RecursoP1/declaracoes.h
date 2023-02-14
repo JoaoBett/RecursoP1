@@ -34,6 +34,12 @@ typedef struct
 
 }tipoAgendamento;
 
+typedef struct
+{
+    tipoData data;
+
+}tipoDias;
+
 
 ///Declaracoes de constantes
 #define MIN_CONTRIBUINTE 111111111
@@ -47,5 +53,7 @@ typedef struct
 #define CLIENTES "cliente"
 
 #define AGENDAMENTO "agendamento"
+
+#define MAX 150
 
 #endif // DECLARACOES_H_INCLUDED
