@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="declaracoes.h" />
+		<Unit filename="funcionalidades.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionalidades.h" />
 		<Unit filename="funcoesaux.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -39,6 +43,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menus.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

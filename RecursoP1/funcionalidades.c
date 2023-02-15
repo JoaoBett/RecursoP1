@@ -117,7 +117,7 @@ tipoAgendamento adicionarAgendamento(int *quantidadeCliente, int *quantidadeAgen
 {
     int numeroContribuinte, i, posicao, k;
 
-    if(*\quantidadeCliente < 0)
+    if(*quantidadeCliente < 0)
     {
         printf("Atencao - Nao existem clientes!");
     }
@@ -165,7 +165,7 @@ tipoAgendamento adicionarAgendamento(int *quantidadeCliente, int *quantidadeAgen
 void registarVisita(tipoAgendamento agendamento[MAX], tipoCliente cliente[MAX], int quantidadeCliente)
 {
 
-    int i, posicao;
+    int i, posicao, numContribuinte;
 
     if(quantidadeCliente < 0)
     {
@@ -175,8 +175,8 @@ void registarVisita(tipoAgendamento agendamento[MAX], tipoCliente cliente[MAX], 
     {
         printf("\n\n--Nova Visita--\n\n");
         numContribuinte = lerInteiro("\nNumero de Contribuinte: ", MIN_CONTRIBUINTE, MAX_CONTRIBUINTE);
-        posicao = procurarCliente(cliente, *quantidadeCliente, numContribuinte);
-        
+        posicao = procurarCliente(cliente, quantidadeCliente, numContribuinte);
+
         if(posicao < -1)
         {
             printf("Atencao - Nao existem Clientes");
@@ -188,15 +188,50 @@ void registarVisita(tipoAgendamento agendamento[MAX], tipoCliente cliente[MAX], 
                 posicao = i;
                 i = quantidadeCliente;
             }
-            
+
         do
         {
         printf("\n\nQual o custo da reparacao?\n");
-        scanf("%d", &agendamento[i]->custo);
+        scanf("%d", &agendamento[i].custo);
 
-        }while(agendamento->custo < 0);
+        }while(agendamento[i].custo < 0);
 
-        agendamento[i]->grauSatis = lerInteiro("Qual o  grau de satisfacao ( 0 - Fraco | 1 - Bom | 2 -Excelente)",0,2);
+        agendamento[i].grauSatis = lerInteiro("Qual o  grau de satisfacao ( 0 - Fraco | 1 - Bom | 2 -Excelente)",0,2);
         }
+    }
+}
+
+void listarData(tipoCliente cliente[MAX], int quantidadeCliente, tipoAgendamento agendamento[MAX], tipoDias data[MAX])
+{
+    int i, quantidadeAgendamentos = 0;
+
+    if(quantidadeCliente < 0)
+    {
+        printf("Atencao - Nao existem Clientes!");
+    }
+    else
+    {
+        printf("Qual é a data dos agendamentos que pretende visualizar?");
+        data->data = lerData();
+
+
+        for(i = 0; i < quantidadeCliente; i++)
+        {
+            if(data->data.dia == agendamento[i].data.dia && agendamento[i].data.mes == data->data.mes && agendamento[i].data.ano == data->data.ano)
+            {
+                printf("\nA listar clientes...\n\n");
+
+                printf("\n---------------------------\n");
+                printf("\nContribuinte: %d\n", cliente[i].contribuinte);
+                printf("\nNome: %s\n", cliente[i].nome);
+                printf("\nMorada: %s\n", cliente[i].morada);
+                printf("\nTelefone : %d\n", cliente[i].contactoTele);
+                printf("\n---------------------------\n");
+
+                quantidadeAgendamentos++;
+            }
+        }
+
+         printf("Quantidade de agendamentos feitos em %d/%d/%d : %d",agendamento[i].data.dia, agendamento[i].data.mes, agendamento[i].data.ano, quantidadeAgendamentos);
     }
 }
